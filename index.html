@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Pet</title>
+  <style>
+    /* Estilos movidos para o cabeçalho */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea,
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #profileDisplay img {
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Criar Perfil de Pet</h1>
+    <form id="profileForm">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="bio">Biografia:</label>
+      <textarea id="bio" name="bio" rows="4" required></textarea>
+
+      <label for="photo">Foto:</label>
+      <!-- Removido input tipo file, pode ser implementado posteriormente -->
+      <input type="text" id="photo" name="photo" placeholder="Insira a URL da foto">
+
+      <label for="socialLinks">Links Sociais:</label>
+      <input type="text" id="socialLinks" name="socialLinks">
+
+      <button type="submit">Criar Perfil</button>
+    </form>
+    <div id="profileDisplay" style="display: none;">
+      <h2>Perfil Criado:</h2>
+      <p><strong>Nome:</strong> <span id="displayedName"></span></p>
+      <p><strong>Biografia:</strong> <span id="displayedBio"></span></p>
+      <p><strong>Foto:</strong> <img id="displayedPhoto" src="" alt="Foto do Pet"></p>
+      <p><strong>Links Sociais:</strong> <span id="displayedSocialLinks"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // Adicionando um ouvinte de evento para o envio do formulário
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevenindo o comportamento padrão de envio do formulário
+
+      // Obtendo os valores dos campos do formulário
+      var name = document.getElementById('name').value;
+      var bio = document.getElementById('bio').value;
+      var photo = document.getElementById('photo').value;
+      var socialLinks = document.getElementById('socialLinks').value;
+
+      // Exibindo os valores no perfil criado
+      document.getElementById('displayedName').textContent = name;
+      document.getElementById('displayedBio').textContent = bio;
+      document.getElementById('displayedPhoto').src = photo !== '' ? photo : 'placeholder.png'; // Usando uma imagem padrão se nenhuma URL de imagem for fornecida
+      document.getElementById('displayedSocialLinks').textContent = socialLinks;
+
+      // Exibindo o perfil criado
+      document.getElementById('profileDisplay').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
